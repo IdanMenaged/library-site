@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-8_j7c+72*0=4qsawg*_$^i3k9rtgd==w(u=ypw#6oloq3xl1s4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['http://localhost:3000'] # frontend address
 
 
 # Application definition
