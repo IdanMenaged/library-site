@@ -15,7 +15,7 @@ class Header extends React.Component {
                     <h1>The Library of Alexendria 2.0</h1>
                     <h3>hopefully it can't burn this time !</h3>
                 </NavbarBrand>
-                <LoginControl isLoggedIn={true} />
+                <LoginControl isLoggedIn={false} />
             </Navbar>
         );
     }

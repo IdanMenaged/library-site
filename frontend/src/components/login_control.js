@@ -1,8 +1,12 @@
 import React from 'react';
 import {
-    Nav, NavItem, NavLink
+    Nav,
+    NavItem,
+    NavLink
 } from 'reactstrap'
 import 'bootstrap/dist/css/bootstrap.css';
+
+import SignUp from './sign_up';
 
 class LoginControl extends React.Component {
     render() {
@@ -15,7 +19,7 @@ class LoginControl extends React.Component {
                         active
                         href="#"
                         >
-                        sign out
+                        log out
                         </NavLink>
                     </NavItem>
                 </Nav>
@@ -33,7 +37,8 @@ class LoginControl extends React.Component {
                         </NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink active href='#'>sign up</NavLink>
+                        {/* <NavLink active href='#'>sign up</NavLink> */}
+                        <SignUp />
                     </NavItem>
                 </Nav>
             );
