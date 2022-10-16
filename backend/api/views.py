@@ -1,27 +1,14 @@
 from django.shortcuts import render
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import User
 from rest_framework import viewsets, permissions
 
 from .serializers import *
 from .models import *
 
+
 class UserViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint
-    """
-    queryset = User.objects.all().order_by('-date_joined')
+    queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [permissions.IsAuthenticated]
-
-
-class GroupViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint
-    """
-    queryset = Group.objects.all()
-    serializer_class = GroupSerializer
-    permission_classes = [permissions.IsAuthenticated]
-
 
 class BookViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.all()

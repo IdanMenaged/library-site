@@ -12,14 +12,25 @@ import {
     ModalFooter,
 } from 'reactstrap'
 
+import { USERS_URL } from '../CONSTANTS';
+
 
 class SignUp extends React.Component {
     constructor(props) {
         super(props);
-        this.toggle = this.toggle.bind(this);
         this.state = {
-            showForm: false
+            showForm: false,
+            password: '',
+            username: '',
+            firstName: '',
+            lastName: '',
+            email: '',
+            passwordConfirm: ''
         };
+
+        this.toggle = this.toggle.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     render() {
@@ -31,18 +42,38 @@ class SignUp extends React.Component {
                         Sign Up
                     </ModalHeader>
                     <ModalBody>
-                        <Form>
+                        <Form onSubmit={this.handleSubmit}>
                             <FormGroup>
                                 <Label for="email">email</Label>
-                                <Input type="email" name="email" id="email" />
+                                <Input
+                                onChange={this.handleChange}
+                                type="email"
+                                name="email"
+                                id="email"
+                                />
                                 <Label for="password">password</Label>
-                                <Input type="password" name="password" id="password" />
+                                <Input
+                                onChange={this.handleChange}
+                                type="password"
+                                name="password"
+                                id="password"
+                                />
+                            </FormGroup>
+                            <FormGroup>
+                                <Input
+                                onChange={this.handleChange} type="submit"
+                                />
                             </FormGroup>
                         </Form>
                     </ModalBody>
                     <ModalFooter>
-                        <Button>Cancel</Button>
-                        <Button color="primary">Submit</Button>
+                        <Button onClick={this.toggle}>Cancel</Button>
+                        {/* <Button
+                        onClick={this.toggle}
+                        color="primary"
+                        >
+                        Submit
+                        </Button> */}
                     </ModalFooter>
                 </Modal>
             </div>
@@ -53,6 +84,33 @@ class SignUp extends React.Component {
         this.setState({
             showForm: !this.state.showForm
         })
+    }
+
+    handleChange(event) {
+        this.setState({
+            [event.target.name]: event.target.value
+        });
+    }
+
+    handleSubmit(event) {
+        const data = {
+            password: this.state.password,
+            username: this.state.username,
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            email: this.state.email,
+            confirmPassword: this.state.confirmPassword
+        };
+
+        fetch(USERS_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => console.log(response.text()));
+        event.preventDefault();
     }
 }
 
